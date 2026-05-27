@@ -16,22 +16,12 @@ Thanks for being here. A few things before you open a PR.
 
 ## Local development
 
-Go 1.24+, no other prerequisites.
+Setup depends on the repo. Each repo's `README.md` documents its own prerequisites and build/test commands (Go for the framework, TinyGo for WASM plugins, container tooling for OCI plugins, plain Markdown for skill repos). Clone the repo you're contributing to and follow its README.
 
 ```sh
-git clone git@github.com:samuelpkg/samuel.git
-cd samuel
-go build ./...
-go test -race ./...
-golangci-lint run ./...
-```
-
-For docs work:
-
-```sh
-pip install -r requirements-docs.txt
-mkdocs serve              # local preview at http://127.0.0.1:8000/
-mkdocs build --strict     # what CI runs on every push
+git clone git@github.com:samuelpkg/<repo>.git
+cd <repo>
+# then run the build/test steps from that repo's README
 ```
 
 ## Conventions
@@ -46,13 +36,7 @@ mkdocs build --strict     # what CI runs on every push
 
 ## Before you open the PR
 
-Run the preflight script:
-
-```sh
-bash scripts/release-checklist.sh
-```
-
-It runs the build, tests, lint, AGENTS.md budget, agnostic grep, RFD index freshness, CHANGELOG check, and the goreleaser config validator in one pass.
+Run the repo's build, tests, and lint locally and make sure they pass. Some repos ship a preflight script (e.g. `scripts/release-checklist.sh` in the framework repo) that runs the full gate in one pass — check the repo's README.
 
 ## RFDs
 
